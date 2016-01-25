@@ -4,6 +4,7 @@ import (
 	"errors"
 	"net/http"
 	"net/url"
+	"crypto/tls"
 )
 
 // Caches configuration URLs
@@ -28,6 +29,10 @@ type Client struct {
 func NewClient(config *ClientConfig) (*Client, error) {
 	c := &Client{
 		config: config,
+	}
+
+	c.Transport=&http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 	}
 	return c, c.initialize()
 }
