@@ -10,4 +10,5 @@ type ClientConfig struct {
 	ErrorsInStatusCode       bool
 	SendClientSecretInParams bool
 	UseGetAccessRequest      bool
+	UseHttps				 bool
 }

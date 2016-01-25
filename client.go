@@ -30,9 +30,10 @@ func NewClient(config *ClientConfig) (*Client, error) {
 	c := &Client{
 		config: config,
 	}
-
-	c.Transport=&http.Transport{
-		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+	if config.UseHttps {
+		c.Transport=&http.Transport{
+			TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+		}
 	}
 	return c, c.initialize()
 }
