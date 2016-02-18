@@ -15,7 +15,9 @@ type BasicAuth struct {
 	Username string
 	Password string
 }
-
+func DownloadData(method string, u *url.URL, auth *BasicAuth, transport http.RoundTripper, output ResponseData) error {
+	return downloadData(method,u,auth,transport,output)
+}
 // Download and parse OAuth2 JSON access request
 func downloadData(method string, u *url.URL, auth *BasicAuth, transport http.RoundTripper, output ResponseData) error {
 	var postdata url.Values
