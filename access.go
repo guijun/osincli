@@ -28,11 +28,11 @@ type AccessRequest struct {
 
 // Access data
 type AccessData struct {
-	TokenType    string
-	AccessToken  string
-	RefreshToken string
-	Expiration   *int32
-	ResponseData ResponseData
+	TokenType    string	`bson:"tokentype"`
+	AccessToken  string `bson:"accesstoken"`
+	RefreshToken string `bson:"refreshtoken"`
+	Expiration   *int32 `bson:"expiration"`
+	ResponseData ResponseData `bson:"responsedata"`
 }
 
 func (c *Client) NewAccessRequest(t AccessRequestType, ad *AuthorizeData) *AccessRequest {
@@ -94,7 +94,6 @@ func (c *AccessRequest) GetToken() (*AccessData, error) {
 	if err != nil {
 		return nil, err
 	}
-
 	// extract and convert received data
 	token_type, ok := ret.ResponseData["token_type"]
 	if !ok {
